@@ -1,5 +1,5 @@
-import org.example.Bill;
-import org.example.Ride;
+import org.taximeter.Bill;
+import org.taximeter.Ride;
 import org.junit.Test;
 
 import java.security.InvalidParameterException;
