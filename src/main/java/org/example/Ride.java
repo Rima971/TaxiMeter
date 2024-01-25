@@ -1,4 +1,4 @@
-package org.taximeter;
+package org.example;
 
 import java.security.InvalidParameterException;
 

@@ -1,5 +1,5 @@
-import org.taximeter.Ride;
-import org.taximeter.Rides;
+import org.example.Ride;
+import org.example.Rides;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
