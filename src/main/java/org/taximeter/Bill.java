@@ -1,4 +1,4 @@
-package org.example;
+package org.taximeter;
 
 import java.util.Date;
 
