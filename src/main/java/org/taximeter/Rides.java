@@ -1,6 +1,5 @@
-package org.example;
+package org.taximeter;
 
-import java.util.EmptyStackException;
 import java.util.Stack;
 
 public class Rides {

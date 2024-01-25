@@ -1,12 +1,8 @@
-import org.example.Bill;
-import org.example.Ride;
-import org.example.Rides;
+import org.taximeter.Ride;
+import org.taximeter.Rides;
 import org.junit.Test;
 
-import java.util.EmptyStackException;
-
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
 
 public class RidesTest {
     @Test
