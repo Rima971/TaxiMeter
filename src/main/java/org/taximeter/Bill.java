@@ -38,12 +38,14 @@ public class Bill {
         return Double.compare(this.travelCost, bill.travelCost) == 0
                 && Double.compare(this.waitingCost, bill.waitingCost) == 0
                 && Double.compare(this.serviceTax, bill.serviceTax) == 0
-                && Double.compare(this.baseCharge, bill.baseCharge) == 0
                 && Double.compare(this.totalFare, bill.totalFare) == 0;
     }
 
     public void print(){
-        System.out.println(this);
+        System.out.println("waiting cost: "+this.waitingCost);
+        System.out.println("travel cost: "+this.travelCost);
+        System.out.println("service tax: "+this.serviceTax);
+        System.out.println("total fare: "+this.totalFare);
     }
 
     public Bill add(Bill bill){

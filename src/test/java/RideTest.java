@@ -33,33 +33,40 @@ public class RideTest {
         assertTrue(mockBill.equalsInValue(ride.computeFare()));
     }
 
-//    @Test
-//    public void ReturnsCorrectFareForNoDistanceButDifferentWaitingTimes(){
-//        Ride ride = new Ride(0,5);
-//        assertEquals(25+2, ride.computeFare().totalFare, PRECISION);
-//
-//        ride = new Ride(0,60);
-//        assertEquals((2*60*1.01)+2, ride.computeFare().totalFare, PRECISION);
-//
-//        ride = new Ride(0,12);
-//        assertEquals(25+2, ride.computeFare().totalFare, PRECISION);
-//
-//        ride = new Ride(0,13);
-//        assertEquals((2*13)+2, ride.computeFare().totalFare, PRECISION);
-//    }
-//
-//    @Test
-//    public void ReturnsCorrectFareForDifferentDistancesButNoWaitingTimes(){
-//        Ride ride = new Ride(5,0);
-//        assertEquals((12*5)+2, ride.computeFare().totalFare, PRECISION);
-//
-//        ride = new Ride(60,0);
-//        assertEquals((60*12*1.01)+2, ride.computeFare().totalFare, PRECISION);
-//
-//        ride = new Ride(0,0);
-//        assertEquals(25+2, ride.computeFare().totalFare, PRECISION);
-//    }
-//
+    @Test
+    public void ReturnsCorrectFareForNoDistanceButDifferentWaitingTimes(){
+        Ride ride = new Ride(0,5);
+        Bill mockBill = new Bill(0,2*5,0,2,25+2);
+        assertTrue(mockBill.equalsInValue(ride.computeFare()));
+
+        ride = new Ride(0,60);
+        mockBill = new Bill(0,2*60,2*60*0.01,2,(2*60*1.01)+2);
+        assertTrue(mockBill.equalsInValue(ride.computeFare()));
+
+        ride = new Ride(0,12);
+        mockBill = new Bill(0,2*12,0,2,25+2);
+        assertTrue(mockBill.equalsInValue(ride.computeFare()));
+
+        ride = new Ride(0,13);
+        mockBill = new Bill(0,2*13,0,2,(2*13)+2);
+        assertTrue(mockBill.equalsInValue(ride.computeFare()));
+    }
+
+    @Test
+    public void ReturnsCorrectFareForDifferentDistancesButNoWaitingTimes(){
+        Ride ride = new Ride(5,0);
+        Bill mockBill = new Bill(12*5,0,0,2,(12*5)+2);
+        assertTrue(mockBill.equalsInValue(ride.computeFare()));
+
+        ride = new Ride(60,0);
+        mockBill = new Bill(12*60,0,12*60*0.01,2,(60*12*1.01)+2);
+        assertTrue(mockBill.equalsInValue(ride.computeFare()));
+
+        ride = new Ride(0,0);
+        mockBill = new Bill(0,0,0,2,25+2);
+        assertTrue(mockBill.equalsInValue(ride.computeFare()));
+    }
+
 //    @Test
 //    public void ReturnsCorrectFareForDifferentDistancesAndDifferentWaitingTimes(){
 //        Ride ride = new Ride(5,12);
