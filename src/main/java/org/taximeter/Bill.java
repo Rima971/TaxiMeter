@@ -1,5 +1,6 @@
 package org.taximeter;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 
 public class Bill {
@@ -11,11 +12,11 @@ public class Bill {
 
     private final Date timeStamp;
     public Bill(double travelCost, double waitingCost, double serviceTax, double baseCharge, double totalFare){
-        this.travelCost = travelCost;
-        this.waitingCost = waitingCost;
-        this.serviceTax = serviceTax;
+        this.travelCost = convertToTwoDecimalPlaces(travelCost);
+        this.waitingCost = convertToTwoDecimalPlaces(waitingCost);
+        this.serviceTax = convertToTwoDecimalPlaces(serviceTax);
         this.baseCharge = baseCharge;
-        this.totalFare = totalFare;
+        this.totalFare = convertToTwoDecimalPlaces(totalFare);
         this.timeStamp = new Date();
     }
 
@@ -26,6 +27,11 @@ public class Bill {
         this.baseCharge = 0;
         this.totalFare = 0;
         this.timeStamp = new Date();
+    }
+
+    private double convertToTwoDecimalPlaces(double value){
+        DecimalFormat formatter = new DecimalFormat("#.##");
+        return Double.parseDouble(formatter.format(value));
     }
 
     public boolean equalsInValue(Object o) {
@@ -55,4 +61,5 @@ public class Bill {
                 this.baseCharge+bill.baseCharge,
                 this.totalFare+bill.totalFare);
     }
+
 }

@@ -8,7 +8,7 @@ public class Ride {
     private enum Constants {
         RUPEES_PER_MIN(2.0),
         RUPEES_PER_KM(12.0),
-        METER_STEPS(0.1),
+        METER_STEPS(0.1000),
 
         MINIMUM_FARE(25.0),
         BASE_FARE(2.0),

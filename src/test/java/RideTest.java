@@ -3,6 +3,7 @@ import org.taximeter.Ride;
 import org.junit.Test;
 
 import java.security.InvalidParameterException;
+import java.text.DecimalFormat;
 
 import static org.junit.Assert.*;
 
@@ -18,7 +19,6 @@ import static org.junit.Assert.*;
 * */
 
 public class RideTest {
-
     @Test
     public void NegativeParameterException(){
         assertThrows(InvalidParameterException.class, () -> new Ride(-1, 0));
@@ -67,50 +67,61 @@ public class RideTest {
         assertTrue(mockBill.equalsInValue(ride.computeFare()));
     }
 
-//    @Test
-//    public void ReturnsCorrectFareForDifferentDistancesAndDifferentWaitingTimes(){
-//        Ride ride = new Ride(5,12);
-//        assertEquals((12*5)+(2*12)+2, ride.computeFare().totalFare, PRECISION);
-//
-//        ride = new Ride(60, 13);
-//        assertEquals(((12*60)+(2*13))*1.01+2, ride.computeFare().totalFare, PRECISION);
-//
-//        ride = new Ride(12, 14);
-//        assertEquals(((12*12)+(2*14))*1.01+2, ride.computeFare().totalFare, PRECISION);
-//    }
-//
-//    @Test
-//    public void DoesNotChargeServiceTaxForFaresBelow100Rs(){
-//        Ride ride = new Ride(1, 12);
-//        assertEquals((12*1)+(2*12)+2, ride.computeFare().totalFare, PRECISION);
-//
-//        ride = new Ride(2, 12);
-//        assertEquals((12*2)+(2*12)+2, ride.computeFare().totalFare, PRECISION);
-//
-//        ride = new Ride(3, 12);
-//        assertEquals((12*3)+(2*12)+2, ride.computeFare().totalFare, PRECISION);
-//    }
-//
-//    @Test
-//    public void ChargesServiceTaxForFaresAbove100Rs(){
-//        Ride ride = new Ride(60, 13);
-//        assertEquals(((12*60)+(2*13))*1.01+2, ride.computeFare().totalFare, PRECISION);
-//
-//        ride = new Ride(13, 14);
-//        assertEquals(((12*13)+(2*14))*1.01+2, ride.computeFare().totalFare, PRECISION);
-//    }
-//
-//    @Test
-//    public void ReturnsCorrectFareForDistancesWithDifferentPrecision(){
-//        Ride ride = new Ride(50.1, 0);
-//        assertEquals((12*50.1)*1.01+2, ride.computeFare().totalFare, PRECISION);
-//
-//        ride = new Ride(60.02, 0);
-//        assertEquals((12*60.0)*1.01+2, ride.computeFare().totalFare, PRECISION);
-//
-//        ride = new Ride(12.19, 0);
-//        assertEquals((12*12.1)*1.01+2, ride.computeFare().totalFare, PRECISION);
-//    }
+    @Test
+    public void ReturnsCorrectFareForDifferentDistancesAndDifferentWaitingTimes(){
+        Ride ride = new Ride(5,12);
+        Bill mockBill = new Bill(12*5,2*12,0,2,(12*5)+(2*12)+2);
+        assertTrue(mockBill.equalsInValue(ride.computeFare()));
+
+        ride = new Ride(60, 13);
+        mockBill = new Bill(12*60,2*13,((12*60)+(2*13))*0.01,2,((12*60)+(2*13))*1.01+2);
+        assertTrue(mockBill.equalsInValue(ride.computeFare()));
+
+        ride = new Ride(12, 14);
+        mockBill = new Bill(12*12,2*14,((12*12)+(2*14))*0.01,2,((12*12)+(2*14))*1.01+2);
+        assertTrue(mockBill.equalsInValue(ride.computeFare()));
+    }
+
+    @Test
+    public void DoesNotChargeServiceTaxForFaresBelow100Rs(){
+        Ride ride = new Ride(1, 12);
+        Bill mockBill = new Bill(12*1,2*12,0,2,(12*1)+(2*12)+2);
+        assertTrue(mockBill.equalsInValue(ride.computeFare()));
+
+        ride = new Ride(2, 12);
+        mockBill = new Bill(12*2,2*12,0,2,(12*2)+(2*12)+2);
+        assertTrue(mockBill.equalsInValue(ride.computeFare()));
+
+        ride = new Ride(3, 12);
+        mockBill = new Bill(12*3,2*12,0,2,(12*3)+(2*12)+2);
+        assertTrue(mockBill.equalsInValue(ride.computeFare()));
+    }
+
+    @Test
+    public void ChargesServiceTaxForFaresAbove100Rs(){
+        Ride ride = new Ride(60, 13);
+        Bill mockBill = new Bill(12*60,2*13,((12*60)+(2*13))*0.01,2,((12*60)+(2*13))*1.01+2);
+        assertTrue(mockBill.equalsInValue(ride.computeFare()));
+
+        ride = new Ride(13, 14);
+        mockBill = new Bill(12*13,2*14,((12*13)+(2*14))*0.01,2,((12*13)+(2*14))*1.01+2);
+        assertTrue(mockBill.equalsInValue(ride.computeFare()));
+    }
+
+    @Test
+    public void ReturnsCorrectFareForDistancesWithDifferentPrecision(){
+        Ride ride = new Ride(50.1, 0);
+        Bill mockBill = new Bill(12*50.1,0,(12*50.1)*0.01,2,((12*50.1)+(12*50.1)*0.01)+2);
+        assertTrue(mockBill.equalsInValue(ride.computeFare()));
+
+        ride = new Ride(60.02, 0);
+        mockBill = new Bill(12*60.0,0,(12*60.0)*0.01,2,((12*60.0)+(12*60.0)*0.01)+2);
+        assertTrue(mockBill.equalsInValue(ride.computeFare()));
+
+        ride = new Ride(12.19, 0);
+        mockBill = new Bill(12*12.1,0,(12*12.1)*0.01,2,((12*12.1)+(12*12.1)*0.01)+2);
+        assertTrue(mockBill.equalsInValue(ride.computeFare()));
+    }
 
 
 
