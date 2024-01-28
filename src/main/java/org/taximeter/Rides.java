@@ -27,7 +27,7 @@ public class Rides {
         return ref.accumulatorBill;
     }
 
-    public double getRidesCount(){
+    public int getRidesCount(){
         return this.rides.size();
     }
 
